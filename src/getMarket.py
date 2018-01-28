@@ -1,16 +1,13 @@
 import urllib.request
 import json
 
-# マーケット ID
+# マーケット 概要、ID
 summary = json.loads(urllib.request.urlopen("https://www.coinexchange.io/api/v1/getmarketsummaries").read())
 firstMarketID = summary['result'][0]['MarketID']
 summaryVol = len(summary['result'])
 
 # マーケットデータ
 market = json.loads(urllib.request.urlopen("https://www.coinexchange.io/api/v1/getmarkets").read())
-
-# マーケット概要
-summary = json.loads(urllib.request.urlopen("https://www.coinexchange.io/api/v1/getmarketsummaries").read())
 
 for i in range(summaryVol - int(firstMarketID)):
     MarketNumber = int(firstMarketID) + i - 1
